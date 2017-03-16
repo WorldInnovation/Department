@@ -23,7 +23,7 @@ public class OvalValidDepName implements CheckWithCheck.SimpleCheck {
         } catch (Exception e){
             e.printStackTrace();
 
-            return false;
+
         }
 
         if(department.getId()==null || (dep.getId()!=null && dep.getId().equals(department.getId()))){
