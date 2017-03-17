@@ -6,8 +6,6 @@ import net.sf.oval.constraint.CheckWith;
 import net.sf.oval.constraint.MaxLength;
 import net.sf.oval.constraint.MinLength;
 import net.sf.oval.constraint.NotNull;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,11 +21,6 @@ public class Department implements Serializable {
 //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "department")
     private Long id;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-
     @NotNull(message = " enter name")
     @MinLength(value = 3, message = " is shorter 3")
     @MaxLength(value = 21, message = " is bigger 21")
@@ -36,6 +29,10 @@ public class Department implements Serializable {
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {

@@ -38,6 +38,7 @@ public class DepSave implements InternalController {
 
         try {
             departmentService.saveOrUpdateDepartment(department);
+            resp.sendRedirect("/");
         } catch (ValidateExp ex) {
             req.setAttribute("department", department);
             req.setAttribute("depId", depId);
@@ -54,6 +55,5 @@ public class DepSave implements InternalController {
         catch (SQLException ex){
             req.getRequestDispatcher("WEB-INF/jsp/sqlException.jsp").forward(req,resp);
         }
-        resp.sendRedirect("/");
     }
 }
