@@ -41,7 +41,7 @@
             </td>
             <td>
                 <label>
-                    <input type="text" name="FirstName" value="<c:out value="${param['firstName'] eq null ? employee.firstName : param['firstName']}"/>"/>
+                    <input type="text" name="FirstName" pattern="[A-Za-z]{3,}" value="<c:out value="${param['firstName'] eq null ? employee.firstName : param['firstName']}"/>"/>
                 </label>
             </td>
         </tr>
@@ -56,7 +56,7 @@
             <td>
                 <label>
                     <%-- <input type="text" name="SecondName" value="<c:out value="${employee.secondName}" />" >--%>
-                    <input type="text" name="SecondName" value="<c:out value="${param['secondName'] eq null ? employee.secondName : param['secondName']}"/>"/>
+                    <input type="text" name="SecondName" pattern="[A-Za-z]{3,}"value="<c:out value="${param['secondName'] eq null ? employee.secondName : param['secondName']}"/>"/>
                 </label>
             </td>
         </tr>
@@ -103,7 +103,7 @@
             </td>
             <td>
                 <label>
-                    <input type="text" name="EMail"  value="<c:out value="${param['eMail'] eq null ? employee.eMail : param['eMail']}"/>"/>
+                    <input type="text" name="EMail"  pattern="([A-z0-9_.-]{3,})@([A-z0-9_.-]{1,}).([A-z]{2,8})" value="<c:out value="${param['eMail'] eq null ? employee.eMail : param['eMail']}"/>"/>
                 </label>
 
             </td>

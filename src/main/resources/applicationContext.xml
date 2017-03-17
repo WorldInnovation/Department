@@ -8,7 +8,7 @@
                              http://www.springframework.org/schema/tx  http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
     <context:property-placeholder location="classpath:database.properties"/>
-
+    <context:annotation-config />
     <context:component-scan base-package="com.aimprosoft.controller,com.aimprosoft.service,com.aimprosoft.dao"/>
 
     <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
@@ -50,7 +50,7 @@
 
     <bean id="ovalValidDepName" class="com.aimprosoft.util.OvalValidDepName"/>
 
-    <context:annotation-config />
+
     <bean class="net.sf.oval.integration.spring.SpringInjector" />
 
 

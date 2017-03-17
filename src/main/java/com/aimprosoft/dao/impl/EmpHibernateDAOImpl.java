@@ -2,7 +2,7 @@ package com.aimprosoft.dao.impl;
 
 import com.aimprosoft.dao.EmployeeDAO;
 import com.aimprosoft.model.Employee;
-import com.aimprosoft.util.HibernateUtil;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,17 +19,17 @@ public class EmpHibernateDAOImpl implements EmployeeDAO {
     private SessionFactory sessionFactory;
     @Override
     public void delete(Employee employee) throws SQLException {
-        HibernateUtil.executeDAO(employee,"delete");
+     //   HibernateUtil.executeDAO(employee,"delete");
     }
 
     @Override
     public void update(Employee employee) throws SQLException {
-        HibernateUtil.executeDAO(employee,"update");
+      //  HibernateUtil.executeDAO(employee,"update");
     }
 
     @Override
     public List<Employee> getAll(Long depID) throws SQLException {
-        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+     //   SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
         List<Employee> employees =
                 (List<Employee>) session.
@@ -43,7 +43,7 @@ public class EmpHibernateDAOImpl implements EmployeeDAO {
     @Override
     public Employee getEmpByID(Employee employee) throws SQLException {
         Long lEmpID = employee.getId();
-        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+      //  SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
         employee = (Employee) session.get(Employee.class, lEmpID) ;
 

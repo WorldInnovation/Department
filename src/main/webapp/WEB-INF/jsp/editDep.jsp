@@ -17,7 +17,7 @@
 <form action="DepSave" method="post">
     <div>
         <label>
-            <input type="text" name="DepName" value="<c:out value="${param['depName'] eq null ? department.name : param['depName']}"/>"/>
+            <input type="text" name="DepName" pattern="[A-Za-z]{3,}" value="<c:out value="${param['depName'] eq null ? department.name : param['depName']}"/>"/>
             <input type="hidden" name="DepID" value="${depId}"/>
 
         </label>

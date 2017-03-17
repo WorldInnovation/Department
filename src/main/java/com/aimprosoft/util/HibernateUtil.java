@@ -1,12 +1,8 @@
-package com.aimprosoft.util;
+/*package com.aimprosoft.util;
 
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-/*
-
-*/
 public class HibernateUtil {
     private static final SessionFactory sessionFactory;
 
@@ -23,14 +19,10 @@ public class HibernateUtil {
         return sessionFactory;
     }
 
-/*
-    public static Session getSession() {
-        Session session = sessionFactory.openSession();
-        return session;
-    }
-*/
 
-    public static void executeDAO (Object object, String execute){
+
+}*/
+/*    public static void executeDAO (Object object, String execute){
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
         if (execute == "delete"){session.delete(object);}
@@ -38,10 +30,6 @@ public class HibernateUtil {
         session.getTransaction().commit();
        // session.close();
     }
-
-
-}
-/*
     {
         StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure("hibernate.cfg.xml")// configures settings from hibernate.cfg.xml
