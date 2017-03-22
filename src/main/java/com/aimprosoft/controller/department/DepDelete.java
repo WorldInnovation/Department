@@ -25,7 +25,7 @@ public class DepDelete implements InternalController {
         if(depId!=null){
             Department department = new Department();
             department.setId(depId);
-            department = departmentService.getDepartmentById(department);
+//            department = departmentService.getDepartmentById(department);
             departmentService.deleteDepartment(department);
         }
         resp.sendRedirect("/");

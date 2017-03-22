@@ -11,6 +11,15 @@ import org.springframework.stereotype.Service;
 public class OvalValidDepName implements CheckWithCheck.SimpleCheck {
     @Autowired
     private DepartmentDAO departmentDAO ;
+
+/*
+    @Autowired
+    public OvalValidDepName(DepartmentDAO departmentDAO){
+                super();
+                this.departmentDAO = departmentDAO;
+            }
+*/
+
     @Override
     public boolean isSatisfied(Object o, Object o1) {
         String depName = o1.toString();

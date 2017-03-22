@@ -85,6 +85,7 @@
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-catalina</artifactId>
             <version>8.5.11</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>net.sf.oval</groupId>
