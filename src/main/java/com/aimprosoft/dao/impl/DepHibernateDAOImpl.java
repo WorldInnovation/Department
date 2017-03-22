@@ -27,7 +27,7 @@ public class DepHibernateDAOImpl implements DepartmentDAO {
 
     private Session currentSession() {
 
-        return sessionFactory.getCurrentSession(); // сеанс из фабрики
+        return sessionFactory.getCurrentSession();
     }
 
     @Override

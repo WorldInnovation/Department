@@ -19,7 +19,7 @@
     <input type="submit" value="New Employee">
 </form>
 
-<form action="DepartmentsList" method="get">
+<form action="/" method="get">
     <input type="hidden" name="DepID" value="${depID}" >
     <input type="submit" value="Departments">
 </form>

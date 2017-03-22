@@ -2,15 +2,12 @@ package com.aimprosoft.service.impl;
 
 
 import com.aimprosoft.dao.DepartmentDAO;
-import com.aimprosoft.dao.impl.DepHibernateDAOImpl;
 import com.aimprosoft.exeption.ValidateExp;
 import com.aimprosoft.model.Department;
 import com.aimprosoft.service.DepartmentService;
 import com.aimprosoft.util.CustomValidator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.SQLException;
 import java.util.List;
