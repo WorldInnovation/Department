@@ -2,8 +2,10 @@ package com.aimprosoft.util;
 
 
 import com.aimprosoft.dao.DepartmentDAO;
+import com.aimprosoft.exeption.ValidateExp;
 import com.aimprosoft.model.Department;
 import net.sf.oval.constraint.CheckWithCheck;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +33,6 @@ public class OvalValidDepName implements CheckWithCheck.SimpleCheck {
             department = departmentDAO.existNameInDB(department);
         } catch (Exception e){
             e.printStackTrace();
-
 
         }
 
