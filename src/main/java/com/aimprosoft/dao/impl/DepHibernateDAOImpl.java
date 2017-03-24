@@ -90,17 +90,18 @@ public class DepHibernateDAOImpl implements DepartmentDAO {
     @Override
     public Department getDepByID(Department department) throws SQLException {
         Long lDepID = department.getId();
-        Session session = currentSession();
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
         department = (Department) session.get(Department.class, lDepID);
         session.getTransaction().commit();
+        session.close();
         return department;
     }
 
     @Override
     public Department existNameInDB(Department department) throws SQLException {
         String depName = department.getName();
-        Session session = currentSession();
+        Session session = sessionFactory.openSession();
         Department dep = department;
         try {
             Query query = session.
@@ -112,7 +113,7 @@ public class DepHibernateDAOImpl implements DepartmentDAO {
         catch (Exception e){
             session.getTransaction().commit();
         }
-
+        session.close();
         return dep;
 
     }

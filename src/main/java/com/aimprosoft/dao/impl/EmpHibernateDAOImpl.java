@@ -59,23 +59,25 @@ public class EmpHibernateDAOImpl implements EmployeeDAO {
     @Override
     public List<Employee> getAll(Long depID) throws SQLException {
 
-        Session session = currentSession();
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
         List<Employee> employees =
                 (List<Employee>) session.
                         createQuery("from Employee e where e.depId=:depID").setParameter("depID", depID).
                         list();
         session.getTransaction().commit();
+        session.close();
         return employees;
     }
 
     @Override
     public Employee getEmpByID(Employee employee) throws SQLException {
         Long lEmpID = employee.getId();
-        Session session = sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
         employee = (Employee) session.get(Employee.class, lEmpID) ;
         session.getTransaction().commit();
+        session.close();
         return employee;
 
     }
