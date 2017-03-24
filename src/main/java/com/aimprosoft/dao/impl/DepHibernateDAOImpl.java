@@ -8,8 +8,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -76,7 +74,7 @@ public class DepHibernateDAOImpl implements DepartmentDAO {
     @Override
     public List<Department> getAll() throws SQLException {
         Session session = sessionFactory.openSession();
-
+        session.beginTransaction();
         List<Department> departments = null;
         try {
             departments = (List<Department>) session.createQuery("from Department").list();

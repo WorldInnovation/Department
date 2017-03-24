@@ -16,21 +16,19 @@ public class OvalValidDepName implements CheckWithCheck.SimpleCheck {
     @Override
     public boolean isSatisfied(Object o, Object o1) {
         String depName = o1.toString();
-        Department dep = (Department) o;
+        Department dep = (Department)o;
 
         Department department = new Department();
         department.setName(depName);
-
-
         try {
             department = departmentDAO.existNameInDB(department);
-
-        } catch (Exception e) {
+        } catch (Exception e){
             e.printStackTrace();
+
 
         }
 
-        if (department.getId() == null || (dep.getId() != null && dep.getId().equals(department.getId()))) {
+        if(department.getId()==null || (dep.getId()!=null && dep.getId().equals(department.getId()))){
             return true;
         }
 
