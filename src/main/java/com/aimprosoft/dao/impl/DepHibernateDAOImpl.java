@@ -15,13 +15,13 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Repository("departmentDAO")
-//@Transactional
+
 public class DepHibernateDAOImpl implements DepartmentDAO {
 
     private SessionFactory sessionFactory;
 
     @Autowired
-    public void DepHibernateDAOImpl(SessionFactory sessionFactory) {
+    public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
@@ -33,37 +33,59 @@ public class DepHibernateDAOImpl implements DepartmentDAO {
     @Override
     public void delete(Department department) throws SQLException {
         Long depID = department.getId();
-        Session session = currentSession();
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
-        List<Employee> employees =
-                (List<Employee>) session.
-                        createQuery("from Employee e where e.depId=:depID").setParameter("depID", depID).
-                        list();
-        for (Employee emp : employees) {
-            session.delete(emp);
+        try {
+            List<Employee> employees =
+                    (List<Employee>) session.
+                            createQuery("from Employee e where e.depId=:depID").setParameter("depID", depID).
+                            list();
+            for (Employee emp : employees) {
+                session.delete(emp);
+            }
+
+            session.delete(department);
+            session.getTransaction().commit();
+        }catch (Exception e){
+            session.getTransaction().rollback();
+            e.printStackTrace();
+        }finally {
+            session.close();
         }
 
-        session.delete(department);
-        session.getTransaction().commit();
+
 
     }
 
     @Override
     public void update(Department department) throws SQLException {
 
-        Session session = currentSession();
-        session.beginTransaction();
-        session.saveOrUpdate(department);
-        session.getTransaction().commit();
+        Session session = sessionFactory.openSession();
+      try {
+          session.beginTransaction();
+          session.saveOrUpdate(department);
+          session.getTransaction().commit();
+      }catch (Exception e){
+        session.getTransaction().rollback();
+      }finally {
+          if(session != null)session.close();
+      }
 
     }
 
     @Override
     public List<Department> getAll() throws SQLException {
-        Session session = currentSession();
-        session.beginTransaction();
-        List<Department> departments = (List<Department>) session.createQuery("from Department").list();
-        session.getTransaction().commit();
+        Session session = sessionFactory.openSession();
+
+        List<Department> departments = null;
+        try {
+            departments = (List<Department>) session.createQuery("from Department").list();
+            session.getTransaction().commit();
+        }catch (Exception e){
+                e.printStackTrace();
+        }finally {
+            if(session != null)session.close();
+        }
         return departments;
     }
 
@@ -81,12 +103,18 @@ public class DepHibernateDAOImpl implements DepartmentDAO {
     public Department existNameInDB(Department department) throws SQLException {
         String depName = department.getName();
         Session session = currentSession();
-       // session.beginTransaction();
-        Query query = session.
-                createQuery("from Department where name=:name");
-        query.setParameter("name", depName);
-        Department dep = (Department) query.uniqueResult();
-       // session.getTransaction().commit();
+        Department dep = department;
+        try {
+            Query query = session.
+                    createQuery("from Department where name=:name");
+            query.setParameter("name", depName);
+            dep = (Department) query.uniqueResult();
+            session.getTransaction().commit();
+        }
+        catch (Exception e){
+            session.getTransaction().commit();
+        }
+
         return dep;
 
     }

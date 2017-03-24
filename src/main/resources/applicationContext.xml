@@ -11,7 +11,7 @@
     <context:annotation-config />
     <context:component-scan base-package="com.aimprosoft.controller,com.aimprosoft.service,com.aimprosoft.dao"/>
 
-    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
+    <tx:annotation-driven  proxy-target-class="true" transaction-manager="transactionManager"/>
     <!--<tx:annotation-driven transaction-manager="transactionManager" />-->
     <bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="${jdbc.driver}"/>
@@ -43,8 +43,8 @@
     </bean>
 
     <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-        <property name="sessionFactory" ref="sessionFactory"/>
         <property name="dataSource" ref="dataSource" />
+        <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
     <bean id="persistenceExceptionTranslationPostProcessor"
