@@ -2,17 +2,14 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
-                            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
-                             http://www.springframework.org/schema/tx  http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+                            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
     <context:property-placeholder location="classpath:database.properties"/>
-    <context:annotation-config />
-    <context:component-scan base-package="com.aimprosoft.controller,com.aimprosoft.service,com.aimprosoft.dao, com.aimprosoft.util"/>
+    <context:annotation-config/>
+    <context:component-scan
+            base-package="com.aimprosoft.controller,com.aimprosoft.service,com.aimprosoft.dao, com.aimprosoft.util"/>
 
-    <tx:annotation-driven  proxy-target-class="true" transaction-manager="transactionManager"/>
-    <!--<tx:annotation-driven transaction-manager="transactionManager" />-->
     <bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="${jdbc.driver}"/>
         <property name="url" value="${jdbc.url}"/>
@@ -32,27 +29,22 @@
                 <prop key="hibernate.dialect">${hibernate.dialect}</prop>
                 <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
                 <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
-                <prop key="hibernate.current_session_context_class">${hibernate.current_session_context_class}</prop>
-<!--                <prop key="hibernate.connection.provider_class">org.hibernate.c3p0.internal.C3P0ConnectionProvider</prop>
-                <prop key="hibernate.c3p0.min_size">1</prop>
-                <prop key="hibernate.c3p0.max_size">19</prop>
-                <prop key="hibernate.c3p0.timeout">120</prop>
-                <prop key="hibernate.c3p0.max_statements">10</prop>-->
+
+                <!--                <prop key="hibernate.connection.provider_class">org.hibernate.c3p0.internal.C3P0ConnectionProvider</prop>
+                                <prop key="hibernate.c3p0.min_size">1</prop>
+                                <prop key="hibernate.c3p0.max_size">19</prop>
+                                <prop key="hibernate.c3p0.timeout">120</prop>
+                                <prop key="hibernate.c3p0.max_statements">10</prop>-->
             </props>
         </property>
     </bean>
 
     <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-        <property name="dataSource" ref="dataSource" />
+        <property name="dataSource" ref="dataSource"/>
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
-    <bean id="persistenceExceptionTranslationPostProcessor"
-          class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
-
     <bean id="validator" class="net.sf.oval.Validator"/>
-
-
 
 
 </beans>

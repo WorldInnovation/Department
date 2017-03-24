@@ -2,13 +2,10 @@ package com.aimprosoft.dao.impl;
 
 import com.aimprosoft.dao.EmployeeDAO;
 import com.aimprosoft.model.Employee;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -26,6 +23,7 @@ public class EmpHibernateDAOImpl implements EmployeeDAO {
 
         return sessionFactory.getCurrentSession();
     }
+
     @Override
     public void delete(Employee employee) throws SQLException {
         Session session = sessionFactory.openSession();
@@ -33,7 +31,7 @@ public class EmpHibernateDAOImpl implements EmployeeDAO {
         try {
             session.delete(employee);
             session.getTransaction().commit();
-        }catch(Exception ex){
+        } catch (Exception ex) {
             session.getTransaction().rollback();
             ex.printStackTrace();
         }
@@ -44,10 +42,10 @@ public class EmpHibernateDAOImpl implements EmployeeDAO {
     public void update(Employee employee) throws SQLException {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        try{
+        try {
             session.saveOrUpdate(employee);
             session.getTransaction().commit();
-        }catch (Exception ex){
+        } catch (Exception ex) {
             session.getTransaction().rollback();
             ex.printStackTrace();
         }
@@ -75,7 +73,7 @@ public class EmpHibernateDAOImpl implements EmployeeDAO {
         Long lEmpID = employee.getId();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        employee = (Employee) session.get(Employee.class, lEmpID) ;
+        employee = (Employee) session.get(Employee.class, lEmpID);
         session.getTransaction().commit();
         session.close();
         return employee;

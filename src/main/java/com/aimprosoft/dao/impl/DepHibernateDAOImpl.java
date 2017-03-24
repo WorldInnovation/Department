@@ -43,13 +43,12 @@ public class DepHibernateDAOImpl implements DepartmentDAO {
 
             session.delete(department);
             session.getTransaction().commit();
-        }catch (Exception e){
+        } catch (Exception e) {
             session.getTransaction().rollback();
             e.printStackTrace();
-        }finally {
-            session.close();
+        } finally {
+            if (session != null) session.close();
         }
-
 
 
     }
@@ -58,15 +57,15 @@ public class DepHibernateDAOImpl implements DepartmentDAO {
     public void update(Department department) throws SQLException {
 
         Session session = sessionFactory.openSession();
-      try {
-          session.beginTransaction();
-          session.saveOrUpdate(department);
-          session.getTransaction().commit();
-      }catch (Exception e){
-        session.getTransaction().rollback();
-      }finally {
-          if(session != null)session.close();
-      }
+        try {
+            session.beginTransaction();
+            session.saveOrUpdate(department);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+        } finally {
+            if (session != null) session.close();
+        }
 
     }
 
@@ -78,10 +77,10 @@ public class DepHibernateDAOImpl implements DepartmentDAO {
         try {
             departments = (List<Department>) session.createQuery("from Department").list();
             session.getTransaction().commit();
-        }catch (Exception e){
-                e.printStackTrace();
-        }finally {
-            if(session != null)session.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null) session.close();
         }
         return departments;
     }
@@ -119,11 +118,3 @@ public class DepHibernateDAOImpl implements DepartmentDAO {
 
     }
 }
-//-------------
-/*    @Override
-    public List<Department> getAll() throws SQLException{
-  Session session = currentSession();
-  session.beginTransaction();
-        List<Department> departments = (List<Department>) session.createQuery("from Department").list();
-        return departments;
-    }*/

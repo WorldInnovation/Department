@@ -14,7 +14,6 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 @Entity(name = "Department")
-
 public class Department implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
