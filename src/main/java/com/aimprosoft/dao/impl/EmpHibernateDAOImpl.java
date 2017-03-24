@@ -18,7 +18,7 @@ public class EmpHibernateDAOImpl implements EmployeeDAO {
     private SessionFactory sessionFactory;
 
     @Autowired
-    public void EmpHibernateDAOImpl(SessionFactory sessionFactory) {
+    public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
@@ -28,25 +28,38 @@ public class EmpHibernateDAOImpl implements EmployeeDAO {
     }
     @Override
     public void delete(Employee employee) throws SQLException {
-        Session session = currentSession();
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
-        session.delete(employee);
-        session.getTransaction().commit();
+        try {
+            session.delete(employee);
+            session.getTransaction().commit();
+        }catch(Exception ex){
+            session.getTransaction().rollback();
+            ex.printStackTrace();
+        }
+        session.close();
     }
 
     @Override
     public void update(Employee employee) throws SQLException {
-        Session session = currentSession();
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
-        session.saveOrUpdate(employee);
-        session.getTransaction().commit();
+        try{
+            session.saveOrUpdate(employee);
+            session.getTransaction().commit();
+        }catch (Exception ex){
+            session.getTransaction().rollback();
+            ex.printStackTrace();
+        }
+        session.close();
+
     }
 
 
     @Override
     public List<Employee> getAll(Long depID) throws SQLException {
 
-        Session session = sessionFactory.getCurrentSession();
+        Session session = currentSession();
         session.beginTransaction();
         List<Employee> employees =
                 (List<Employee>) session.
