@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.SQLException;
 import java.util.List;
-/*@Transactional*/
+
 @Repository("employeeDAO")
 public class EmpHibernateDAOImpl implements EmployeeDAO {
     private SessionFactory sessionFactory;

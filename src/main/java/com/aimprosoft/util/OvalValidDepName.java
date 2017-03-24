@@ -7,11 +7,14 @@ import net.sf.oval.constraint.CheckWithCheck;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
+
 public class OvalValidDepName implements CheckWithCheck.SimpleCheck {
 
-    @Autowired
     private DepartmentDAO departmentDAO;
+
+    public OvalValidDepName (){
+        this.departmentDAO = SpringUtil.getDepartmentService();
+    }
 
     @Override
     public boolean isSatisfied(Object o, Object o1) {
@@ -28,10 +31,7 @@ public class OvalValidDepName implements CheckWithCheck.SimpleCheck {
 
         }
 
-        if(department.getId()==null || (dep.getId()!=null && dep.getId().equals(department.getId()))){
-            return true;
-        }
+        return (department ==null || department.getId().equals(dep.getId()));
 
-        return false;
     }
 }

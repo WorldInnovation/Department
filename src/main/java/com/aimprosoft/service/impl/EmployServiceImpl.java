@@ -14,7 +14,8 @@ import java.sql.SQLException;
 import java.util.List;
 @Service
 public class EmployServiceImpl implements EmployeeService{
-@Autowired
+
+    @Autowired
     private EmployeeDAO employeeDAO ;//EmployeeDAOImpl();
     @Autowired
     private  CustomValidator validator ;

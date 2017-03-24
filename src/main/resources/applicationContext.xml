@@ -9,7 +9,7 @@
 
     <context:property-placeholder location="classpath:database.properties"/>
     <context:annotation-config />
-    <context:component-scan base-package="com.aimprosoft.controller,com.aimprosoft.service,com.aimprosoft.dao"/>
+    <context:component-scan base-package="com.aimprosoft.controller,com.aimprosoft.service,com.aimprosoft.dao, com.aimprosoft.util"/>
 
     <tx:annotation-driven  proxy-target-class="true" transaction-manager="transactionManager"/>
     <!--<tx:annotation-driven transaction-manager="transactionManager" />-->
@@ -50,14 +50,9 @@
     <bean id="persistenceExceptionTranslationPostProcessor"
           class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
 
-    <bean id="myValidator" class="net.sf.oval.Validator"/>
-
-    <bean id="myCustomValidator" class="com.aimprosoft.util.CustomValidator"/>
-
-    <bean id="ovalValidDepName" class="com.aimprosoft.util.OvalValidDepName"/>
+    <bean id="validator" class="net.sf.oval.Validator"/>
 
 
-    <bean class="net.sf.oval.integration.spring.SpringInjector" />
 
 
 </beans>

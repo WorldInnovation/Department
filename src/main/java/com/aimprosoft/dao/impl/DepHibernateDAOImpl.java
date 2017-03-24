@@ -13,7 +13,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Repository("departmentDAO")
-
 public class DepHibernateDAOImpl implements DepartmentDAO {
 
     private SessionFactory sessionFactory;
@@ -102,6 +101,7 @@ public class DepHibernateDAOImpl implements DepartmentDAO {
     public Department existNameInDB(Department department) throws SQLException {
         String depName = department.getName();
         Session session = sessionFactory.openSession();
+        session.beginTransaction();
         Department dep = department;
         try {
             Query query = session.
@@ -109,11 +109,12 @@ public class DepHibernateDAOImpl implements DepartmentDAO {
             query.setParameter("name", depName);
             dep = (Department) query.uniqueResult();
             session.getTransaction().commit();
+
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+        } finally {
+            if (session != null) session.close();
         }
-        catch (Exception e){
-            session.getTransaction().commit();
-        }
-        session.close();
         return dep;
 
     }

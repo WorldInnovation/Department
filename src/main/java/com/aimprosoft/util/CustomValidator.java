@@ -4,10 +4,8 @@ package com.aimprosoft.util;
 import com.aimprosoft.exeption.ValidateExp;
 import net.sf.oval.ConstraintViolation;
 import net.sf.oval.Validator;
-import net.sf.oval.configuration.annotation.AnnotationsConfigurer;
 import net.sf.oval.context.FieldContext;
 import net.sf.oval.context.OValContext;
-import net.sf.oval.integration.spring.BeanInjectingCheckInitializationListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,20 +13,15 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 @Service
 public class CustomValidator {
 
 
-   /* @Autowired
-    private Validator validator ;*/
+    @Autowired
+    private Validator validator;
 
     public void validate(Object object) throws ValidateExp {
-        AnnotationsConfigurer myConfigurer = new AnnotationsConfigurer();
-
-        myConfigurer.addCheckInitializationListener(BeanInjectingCheckInitializationListener.INSTANCE);
-
-        Validator validator = new Validator(myConfigurer);
-
 
         List<ConstraintViolation> constraintViolations = validator.validate(object);
         if (constraintViolations.size() > 0) {

@@ -16,35 +16,30 @@ import java.util.List;
 public class DepartmentServiceImpl  implements DepartmentService{
 
     @Autowired
-
     private DepartmentDAO departmentDAO ;//DepartmentDAOImpl();
     @Autowired
     private  CustomValidator validator ;
 
 
     @Override
-    @Transactional
     public void saveOrUpdateDepartment(Department department) throws ValidateExp, SQLException {
         validator.validate(department);
         departmentDAO.update(department);
     }
 
     @Override
-    @Transactional(readOnly = true)
     public List<Department> showDepartments() throws  SQLException {
 
         return (List<Department>) departmentDAO.getAll();
     }
 
     @Override
-    @Transactional
     public void deleteDepartment(Department department) throws SQLException {
 
         departmentDAO.delete(department);
     }
 
     @Override
-    @Transactional(readOnly = true)
     public Department getDepartmentById(Department department) throws SQLException {
         return departmentDAO.getDepByID(department);
     }
