@@ -22,11 +22,6 @@ public class DepHibernateDAOImpl implements DepartmentDAO {
         this.sessionFactory = sessionFactory;
     }
 
-    private Session currentSession() {
-
-        return sessionFactory.getCurrentSession();
-    }
-
     @Override
     public void delete(Department department) throws SQLException {
         Long depID = department.getId();

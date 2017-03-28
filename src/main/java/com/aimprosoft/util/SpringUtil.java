@@ -6,9 +6,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Service;
 
-/**
- * Created on 24.03.17.
- */
+
 @Service
 public class SpringUtil implements ApplicationContextAware {
 

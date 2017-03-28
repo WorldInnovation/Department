@@ -19,11 +19,6 @@ public class EmpHibernateDAOImpl implements EmployeeDAO {
         this.sessionFactory = sessionFactory;
     }
 
-    private Session currentSession() {
-
-        return sessionFactory.getCurrentSession();
-    }
-
     @Override
     public void delete(Employee employee) throws SQLException {
         Session session = sessionFactory.openSession();
