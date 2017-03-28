@@ -19,10 +19,6 @@ import java.util.Map;
 @Service
 public class CustomValidator {
 
-
-/*    @Autowired
-    private Validator validator;*/
-
     public void validate(Object object) throws ValidateExp {
         AnnotationsConfigurer myConfigurer = new AnnotationsConfigurer();
         myConfigurer.addCheckInitializationListener(BeanInjectingCheckInitializationListener.INSTANCE);
