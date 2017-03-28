@@ -1,6 +1,5 @@
 package com.aimprosoft.model;
 
-
 import com.aimprosoft.util.OvalValidDepName;
 import net.sf.oval.constraint.CheckWith;
 import net.sf.oval.constraint.MaxLength;
@@ -59,6 +58,4 @@ public class Department implements Serializable {
         result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
     }
-
-
 }

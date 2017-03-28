@@ -3,11 +3,9 @@ package com.aimprosoft.controller.employee;
 import com.aimprosoft.controller.InternalController;
 import com.aimprosoft.model.Employee;
 import com.aimprosoft.service.EmployeeService;
-import com.aimprosoft.service.impl.EmployServiceImpl;
 import com.aimprosoft.util.FormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -18,16 +16,15 @@ import java.util.List;
 
 @Controller("/EmployeesList")
 public class EmployeesList implements InternalController {
-@Autowired
-    private EmployeeService employeeService ;
+    @Autowired
+    private EmployeeService employeeService;
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException, SQLException {
         String depID = req.getParameter("DepID");
         req.setAttribute("depID", depID);
-        //--
         Long lDepID = FormatUtils.getLongFromStr(depID);
-        if (lDepID != null){
+        if (lDepID != null) {
             List<Employee> employees = employeeService.listEmployee(lDepID);
             req.setAttribute("employees", employees);
         }

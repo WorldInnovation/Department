@@ -12,10 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+
 @Controller("/EditDepartment")
 public class EditDepartment implements InternalController {
     @Autowired
-    private DepartmentService departmentService ;
+    private DepartmentService departmentService;
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException, SQLException {

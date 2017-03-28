@@ -15,12 +15,8 @@ import java.util.List;
 @Repository("departmentDAO")
 public class DepHibernateDAOImpl implements DepartmentDAO {
 
-    private SessionFactory sessionFactory;
-
     @Autowired
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
+    private SessionFactory sessionFactory;
 
     @Override
     public void delete(Department department) throws SQLException {
@@ -44,8 +40,6 @@ public class DepHibernateDAOImpl implements DepartmentDAO {
         } finally {
             if (session != null) session.close();
         }
-
-
     }
 
     @Override

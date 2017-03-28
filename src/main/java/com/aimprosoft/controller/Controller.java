@@ -10,22 +10,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+
 @Component("controller")
-public class Controller implements HttpRequestHandler{
+public class Controller implements HttpRequestHandler {
 
     @Autowired
     private ApplicationContext applicationContext;
 
     @Override
-    public void handleRequest (HttpServletRequest req ,HttpServletResponse resp)throws ServletException, IOException {
+    public void handleRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String url = req.getServletPath();
-        InternalController mainController = (InternalController) applicationContext.getBean(url) ;
+        InternalController mainController = (InternalController) applicationContext.getBean(url);
 
         try {
             mainController.execute(req, resp);
         } catch (SQLException e) {
             e.printStackTrace();
-            req.setAttribute("sqlError",e.getMessage());
+            req.setAttribute("sqlError", e.getMessage());
             resp.sendRedirect("WEB-INF/jsp/sqlException.jsp");
         }
     }

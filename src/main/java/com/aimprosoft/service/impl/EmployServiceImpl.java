@@ -16,7 +16,7 @@ import java.util.List;
 public class EmployServiceImpl implements EmployeeService{
 
     @Autowired
-    private EmployeeDAO employeeDAO ;//EmployeeDAOImpl();
+    private EmployeeDAO employeeDAO ;
     @Autowired
     private  CustomValidator validator ;
 

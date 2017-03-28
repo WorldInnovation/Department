@@ -8,6 +8,7 @@
     </JAVADOC>
     <SOURCES>
       <root url="jar://$MAVEN_REPOSITORY$/net/sf/oval/oval/1.86/oval-1.86-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.ideaLibSources/oval-1.86-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

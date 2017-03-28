@@ -8,6 +8,7 @@ import net.sf.oval.configuration.annotation.AnnotationsConfigurer;
 import net.sf.oval.context.FieldContext;
 import net.sf.oval.context.OValContext;
 import net.sf.oval.integration.spring.BeanInjectingCheckInitializationListener;
+import net.sf.oval.integration.spring.SpringCheckInitializationListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,7 @@ public class CustomValidator {
 
     public void validate(Object object) throws ValidateExp {
         AnnotationsConfigurer myConfigurer = new AnnotationsConfigurer();
-        myConfigurer.addCheckInitializationListener(BeanInjectingCheckInitializationListener.INSTANCE);
+        myConfigurer.addCheckInitializationListener(SpringCheckInitializationListener.INSTANCE);
 
         Validator myValidator = new Validator(myConfigurer);
 

@@ -8,17 +8,17 @@ import com.aimprosoft.service.DepartmentService;
 import com.aimprosoft.util.CustomValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.SQLException;
 import java.util.List;
+
 @Service("departmentService")
-public class DepartmentServiceImpl  implements DepartmentService{
+public class DepartmentServiceImpl implements DepartmentService {
 
     @Autowired
-    private DepartmentDAO departmentDAO ;//DepartmentDAOImpl();
+    private DepartmentDAO departmentDAO;
     @Autowired
-    private  CustomValidator validator ;
+    private CustomValidator validator;
 
 
     @Override
@@ -28,7 +28,7 @@ public class DepartmentServiceImpl  implements DepartmentService{
     }
 
     @Override
-    public List<Department> showDepartments() throws  SQLException {
+    public List<Department> showDepartments() throws SQLException {
 
         return (List<Department>) departmentDAO.getAll();
     }

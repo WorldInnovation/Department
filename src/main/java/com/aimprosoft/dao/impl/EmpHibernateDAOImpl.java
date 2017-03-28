@@ -12,12 +12,9 @@ import java.util.List;
 
 @Repository("employeeDAO")
 public class EmpHibernateDAOImpl implements EmployeeDAO {
-    private SessionFactory sessionFactory;
 
     @Autowired
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
+    private SessionFactory sessionFactory;
 
     @Override
     public void delete(Employee employee) throws SQLException {
@@ -45,7 +42,6 @@ public class EmpHibernateDAOImpl implements EmployeeDAO {
             ex.printStackTrace();
         }
         session.close();
-
     }
 
 
@@ -72,6 +68,5 @@ public class EmpHibernateDAOImpl implements EmployeeDAO {
         session.getTransaction().commit();
         session.close();
         return employee;
-
     }
 }

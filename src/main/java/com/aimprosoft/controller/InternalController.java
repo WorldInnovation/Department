@@ -9,6 +9,6 @@ import java.sql.SQLException;
 
 public interface InternalController {
 
-    void execute (HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException,SQLException;
+    void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, SQLException;
 
 }
