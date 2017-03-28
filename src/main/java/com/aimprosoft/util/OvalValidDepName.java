@@ -10,11 +10,9 @@ import org.springframework.stereotype.Service;
 
 public class OvalValidDepName implements CheckWithCheck.SimpleCheck {
 
+    @Autowired
     private DepartmentDAO departmentDAO;
 
-    public OvalValidDepName (){
-        this.departmentDAO = SpringUtil.getDepartmentService();
-    }
 
     @Override
     public boolean isSatisfied(Object o, Object o1) {
@@ -27,7 +25,6 @@ public class OvalValidDepName implements CheckWithCheck.SimpleCheck {
             department = departmentDAO.existNameInDB(department);
         } catch (Exception e){
             e.printStackTrace();
-
 
         }
 

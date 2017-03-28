@@ -7,8 +7,10 @@
 
     <context:property-placeholder location="classpath:database.properties"/>
     <context:annotation-config/>
+        <bean class="net.sf.oval.integration.spring.SpringInjector"/>
+
     <context:component-scan
-            base-package="com.aimprosoft.controller,com.aimprosoft.service,com.aimprosoft.dao, com.aimprosoft.util"/>
+            base-package="com.aimprosoft.controller,com.aimprosoft.service,com.aimprosoft.dao"/>
 
     <bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="${jdbc.driver}"/>
@@ -44,7 +46,8 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
-    <bean id="validator" class="net.sf.oval.Validator"/>
-
+    <bean id="myValidator" class="net.sf.oval.Validator"/>
+    <bean id="myCustomValidator" class="com.aimprosoft.util.CustomValidator"/>
+    <bean id="ovalValidDepName" class="com.aimprosoft.util.OvalValidDepName"/>
 
 </beans>

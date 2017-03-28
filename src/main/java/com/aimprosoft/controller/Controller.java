@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 @Component("controller")
 public class Controller implements HttpRequestHandler{
+
     @Autowired
     private ApplicationContext applicationContext;
 
