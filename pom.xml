@@ -52,6 +52,11 @@
             <artifactId>hibernate-c3p0</artifactId>
             <version>4.3.10.Final</version>
         </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
         <!--JAVAX-->
         <dependency>
             <groupId>javax.servlet</groupId>

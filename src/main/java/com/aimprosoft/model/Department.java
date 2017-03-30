@@ -6,17 +6,14 @@ import net.sf.oval.constraint.MaxLength;
 import net.sf.oval.constraint.MinLength;
 import net.sf.oval.constraint.NotNull;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity(name = "Department")
 public class Department implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "department")
     private Long id;
 
     @NotNull(message = " enter name")
@@ -24,6 +21,9 @@ public class Department implements Serializable {
     @MaxLength(value = 21, message = " is bigger 21")
     @CheckWith(value = OvalValidDepName.class, message = " name exist")
     private String name;
+
+    @OneToMany(cascade = CascadeType.ALL)//, fetch = FetchType.LAZY, orphanRemoval = true
+    private Set<Employee> employees;
 
     public Long getId() {
         return id;
@@ -39,6 +39,14 @@ public class Department implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Set<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(Set<Employee> employees) {
+        this.employees = employees;
     }
 
     @Override

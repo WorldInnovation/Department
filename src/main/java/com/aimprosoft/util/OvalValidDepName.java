@@ -5,8 +5,9 @@ import com.aimprosoft.dao.DepartmentDAO;
 import com.aimprosoft.model.Department;
 import net.sf.oval.constraint.CheckWithCheck;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-
+@Service
 public class OvalValidDepName implements CheckWithCheck.SimpleCheck {
 
     @Autowired

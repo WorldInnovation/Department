@@ -46,6 +46,9 @@ public class Employee implements Serializable {
     @NotNull
     private Long depId;
 
+    @ManyToOne
+    private Department department;
+
 
     public void setId(Long id) {
         this.id = id;
@@ -75,8 +78,16 @@ public class Employee implements Serializable {
         this.birthday = birthday;
     }
 
-    public void seteMail(String eMail) {
+    public void setMail(String eMail) {
         this.eMail = eMail;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     @Override

@@ -6,6 +6,7 @@ import com.aimprosoft.model.Employee;
 import com.aimprosoft.service.EmployeeService;
 import com.aimprosoft.util.FormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 
 import javax.servlet.ServletException;
@@ -18,6 +19,7 @@ import java.util.Date;
 @Controller("/EmpSave")
 public class EmpSave implements InternalController {
     @Autowired
+    @Qualifier("employServiceImpl")
     private EmployeeService employeeService;
 
     @Override
@@ -43,7 +45,7 @@ public class EmpSave implements InternalController {
         if (dBirthday != null) employee.setBirthday(dBirthday);
         Long lDepID = FormatUtils.getLongFromStr(depID);
         if (lDepID != null) employee.setDepID(lDepID);
-        employee.seteMail(eMail);
+        employee.setMail(eMail);
 
         try {
             employeeService.updateEmployee(employee);

@@ -24,13 +24,13 @@ public class DepHibernateDAOImpl implements DepartmentDAO {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         try {
-            List<Employee> employees =
+/*            List<Employee> employees =
                     (List<Employee>) session.
                             createQuery("from Employee e where e.depId=:depID").setParameter("depID", depID).
                             list();
             for (Employee emp : employees) {
                 session.delete(emp);
-            }
+            }*/
 
             session.delete(department);
             session.getTransaction().commit();
