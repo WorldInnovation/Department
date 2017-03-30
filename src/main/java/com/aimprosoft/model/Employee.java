@@ -64,6 +64,38 @@ public class Employee implements Serializable {
         return department;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getSecondName() {
+        return secondName;
+    }
+
+    public Integer getGrade() {
+        return grade;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public String geteMail() {
+        return eMail;
+    }
+
+    public void seteMail(String eMail) {
+        this.eMail = eMail;
+    }
+
+    public Long getDepId() {
+        return depId;
+    }
+
+    public void setDepId(Long depId) {
+        this.depId = depId;
+    }
+
     public void setDepartment(Department department) {
         this.department = department;
     }
