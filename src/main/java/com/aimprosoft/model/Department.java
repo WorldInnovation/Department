@@ -22,8 +22,9 @@ public class Department implements Serializable {
     @CheckWith(value = OvalValidDepName.class, message = " name exist")
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)//
-    private Set<Employee> employees;
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy="Department")
+//    @Cascade({CascadeType.DELETE})
+//    private Set<Employee> employees = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -41,13 +42,13 @@ public class Department implements Serializable {
         this.name = name;
     }
 
-    public Set<Employee> getEmployees() {
-        return employees;
-    }
-
-    public void setEmployees(Set<Employee> employees) {
-        this.employees = employees;
-    }
+//    public Set<Employee> getEmployees() {
+//        return employees;
+//    }
+//
+//    public void setEmployees(Set<Employee> employees) {
+//        this.employees = employees;
+//    }
 
     @Override
     public boolean equals(Object o) {

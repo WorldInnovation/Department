@@ -46,7 +46,8 @@ public class Employee implements Serializable {
     @NotNull
     private Long depId;
 
-    @ManyToOne
+    //@ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "depId", nullable = false)
     private Department department;
 
 
