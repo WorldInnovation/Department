@@ -22,7 +22,7 @@ public class Department implements Serializable {
     @CheckWith(value = OvalValidDepName.class, message = " name exist")
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL)//, fetch = FetchType.LAZY, orphanRemoval = true
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)//
     private Set<Employee> employees;
 
     public Long getId() {
