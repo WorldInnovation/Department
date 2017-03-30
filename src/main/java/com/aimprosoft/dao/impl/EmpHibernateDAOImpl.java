@@ -13,8 +13,14 @@ import java.util.List;
 @Repository("employeeDAO")
 public class EmpHibernateDAOImpl implements EmployeeDAO {
 
+    private static  final String GET_EMP = "from Employee e where e.depId=:depID";
+
+    private final SessionFactory sessionFactory;
+
     @Autowired
-    private SessionFactory sessionFactory;
+    public EmpHibernateDAOImpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     @Override
     public void delete(Employee employee) throws SQLException {
@@ -50,10 +56,7 @@ public class EmpHibernateDAOImpl implements EmployeeDAO {
 
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        List<Employee> employees =
-                (List<Employee>) session.
-                        createQuery("from Employee e where e.depId=:depID").setParameter("depID", depID).
-                        list();
+        List<Employee> employees = (List<Employee>) session.createQuery(GET_EMP).setParameter("depID", depID).list();
         session.getTransaction().commit();
         session.close();
         return employees;
