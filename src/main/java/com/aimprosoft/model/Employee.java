@@ -6,36 +6,43 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-@Entity(name = "Employee")
+@Entity()
+@Table(name = "Employee")
 public class Employee implements Serializable {
 
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "firstName")
     @NotNull
     @NotEmpty
     @MinLength(value = 3, message = " is shorter 3")
     @MaxLength(value = 21, message = " is bigger 21")
     private String firstName;
 
+    @Column(name = "secondName")
     @NotNull
     @NotEmpty
     @MinLength(value = 3, message = " is shorter 3")
     @MaxLength(value = 21, message = " is bigger 21")
     private String secondName;
 
+    @Column(name = "grade")
     @NotNull(message = " is smaller 1")
     @NotEmpty(message = " is smaller 1")
     @Min(value = 1, message = " is smaller 1")
     @Max(value = 10, message = " is bigger 10")
     private Integer grade;
 
+    @Column(name = "birthday")
     @Temporal(value = TemporalType.DATE)
     @NotNull(message = "select format yyyy-MM-dd")
     @DateRange(format = "yyyy-mm-dd", message = "select format yyyy-MM-dd")
     private Date birthday;
 
+    @Column(name = "eMail")
     @NotNull
     @NotEmpty
     @MinLength(value = 7, message = "set@rightMail.format")
@@ -43,13 +50,23 @@ public class Employee implements Serializable {
     @Email(message = "set@rightMail.format")
     private String eMail;
 
+
     @NotNull
+    @Column(name = "depID")
     private Long depId;
 
-    //@ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "depId", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "depID", insertable = false, updatable = false, nullable=false)
     private Department department;
 
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
 
     public void setId(Long id) {
         this.id = id;
@@ -81,14 +98,6 @@ public class Employee implements Serializable {
 
     public void setMail(String eMail) {
         this.eMail = eMail;
-    }
-
-    public Department getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(Department department) {
-        this.department = department;
     }
 
     @Override

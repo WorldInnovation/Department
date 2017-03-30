@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
 import java.util.List;
-@Service
+@Service("employServiceImpl")
 public class EmployServiceImpl implements EmployeeService{
 
     @Autowired

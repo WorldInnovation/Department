@@ -2,7 +2,9 @@ package com.aimprosoft.controller.employee;
 
 import com.aimprosoft.controller.InternalController;
 import com.aimprosoft.exeption.ValidateExp;
+import com.aimprosoft.model.Department;
 import com.aimprosoft.model.Employee;
+import com.aimprosoft.service.DepartmentService;
 import com.aimprosoft.service.EmployeeService;
 import com.aimprosoft.util.FormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,9 @@ import java.util.Date;
 
 @Controller("/EmpSave")
 public class EmpSave implements InternalController {
+
+/*    @Autowired
+    private DepartmentService departmentService;*/
     @Autowired
     @Qualifier("employServiceImpl")
     private EmployeeService employeeService;
@@ -46,6 +51,11 @@ public class EmpSave implements InternalController {
         Long lDepID = FormatUtils.getLongFromStr(depID);
         if (lDepID != null) employee.setDepID(lDepID);
         employee.setMail(eMail);
+        //
+        /*Department department = new Department();
+        department.setId(lDepID);
+        department = departmentService.getDepartmentById(department);
+        employee.setDepartment(department);*/
 
         try {
             employeeService.updateEmployee(employee);

@@ -8,23 +8,33 @@ import net.sf.oval.constraint.NotNull;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 
-@Entity(name = "Department")
+@Entity
+@Table(name = "Department")
 public class Department implements Serializable {
     @Id
+    @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "name")
     @NotNull(message = " enter name")
     @MinLength(value = 3, message = " is shorter 3")
     @MaxLength(value = 21, message = " is bigger 21")
     @CheckWith(value = OvalValidDepName.class, message = " name exist")
     private String name;
 
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy="Department")
-//    @Cascade({CascadeType.DELETE})
-//    private Set<Employee> employees = new HashSet<>();
+    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)//
+    private List<Employee> employees;
+
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
+    }
 
     public Long getId() {
         return id;
@@ -41,14 +51,6 @@ public class Department implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
-
-//    public Set<Employee> getEmployees() {
-//        return employees;
-//    }
-//
-//    public void setEmployees(Set<Employee> employees) {
-//        this.employees = employees;
-//    }
 
     @Override
     public boolean equals(Object o) {
