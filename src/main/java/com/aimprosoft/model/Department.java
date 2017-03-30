@@ -25,6 +25,7 @@ public class Department implements Serializable {
     @CheckWith(value = OvalValidDepName.class, message = " name exist")
     private String name;
 
+
     @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)//
     private List<Employee> employees;
 
