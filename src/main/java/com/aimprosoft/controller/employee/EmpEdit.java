@@ -30,7 +30,7 @@ public class EmpEdit implements InternalController {
             employee = employeeService.getEmpByID(employee);
             req.setAttribute("empID", empID);
             req.setAttribute("employee", employee);
-        }//edit
+        }
         req.getRequestDispatcher("WEB-INF/jsp/empEdit.jsp").forward(req, resp);
     }
 }
