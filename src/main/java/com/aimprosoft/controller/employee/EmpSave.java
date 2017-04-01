@@ -21,8 +21,6 @@ import java.util.Date;
 @Controller("/EmpSave")
 public class EmpSave implements InternalController {
 
-/*    @Autowired
-    private DepartmentService departmentService;*/
     @Autowired
     @Qualifier("employServiceImpl")
     private EmployeeService employeeService;
@@ -51,11 +49,6 @@ public class EmpSave implements InternalController {
         Long lDepID = FormatUtils.getLongFromStr(depID);
         if (lDepID != null) employee.setDepID(lDepID);
         employee.setMail(eMail);
-        //
-        /*Department department = new Department();
-        department.setId(lDepID);
-        department = departmentService.getDepartmentById(department);
-        employee.setDepartment(department);*/
 
         try {
             employeeService.updateEmployee(employee);

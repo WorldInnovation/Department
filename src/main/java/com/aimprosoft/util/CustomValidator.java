@@ -7,9 +7,7 @@ import net.sf.oval.Validator;
 import net.sf.oval.configuration.annotation.AnnotationsConfigurer;
 import net.sf.oval.context.FieldContext;
 import net.sf.oval.context.OValContext;
-import net.sf.oval.integration.spring.BeanInjectingCheckInitializationListener;
 import net.sf.oval.integration.spring.SpringCheckInitializationListener;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Field;
@@ -29,7 +27,7 @@ public class CustomValidator {
         List<ConstraintViolation> constraintViolations = myValidator.validate(object);
         if (constraintViolations.size() > 0) {
 
-            Map<String, String> errorMap = new HashMap<String, String>();
+            Map<String, String> errorMap = new HashMap<>();
 
             for (ConstraintViolation violation : constraintViolations) {
                 OValContext context = violation.getContext();

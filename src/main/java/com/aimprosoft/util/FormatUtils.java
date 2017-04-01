@@ -29,7 +29,6 @@ public class FormatUtils {
             }
         }
         return value;
-
     }
 
     public static Date getDateFromString(String stringValue) {
