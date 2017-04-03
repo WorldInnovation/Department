@@ -57,7 +57,7 @@ public class EmpSave implements InternalController {
             req.setAttribute("empID", empID);
             req.setAttribute("errorMap", exp.getErrorMap());
             req.setAttribute("employee", employee);
-            req.getRequestDispatcher("WEB-INF/jsp/empEdit.jsp").forward(req, resp);//need write tedirect
+            req.getRequestDispatcher("WEB-INF/jsp/empEdit.jsp").forward(req, resp);
         }
         String sendParam = "?DepID=".concat(depID);
         resp.sendRedirect("/EmployeesList".concat(sendParam));

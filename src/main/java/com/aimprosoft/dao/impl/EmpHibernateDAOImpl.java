@@ -1,3 +1,4 @@
+
 package com.aimprosoft.dao.impl;
 
 import com.aimprosoft.dao.EmployeeDAO;
@@ -25,39 +26,29 @@ public class EmpHibernateDAOImpl implements EmployeeDAO {
     @Override
     public void delete(Employee employee) throws SQLException {
         Session session = sessionFactory.openSession();
-        session.beginTransaction();
         try {
             session.delete(employee);
-            session.getTransaction().commit();
-        } catch (Exception ex) {
-            session.getTransaction().rollback();
-            ex.printStackTrace();
+        } finally {
+            session.close();
         }
-        session.close();
+
     }
 
     @Override
     public void update(Employee employee) throws SQLException {
         Session session = sessionFactory.openSession();
-        session.beginTransaction();
         try {
             session.saveOrUpdate(employee);
-            session.getTransaction().commit();
-        } catch (Exception ex) {
-            session.getTransaction().rollback();
-            ex.printStackTrace();
+        } finally {
+            session.close();
         }
-        session.close();
     }
-
 
     @Override
     public List<Employee> getAll(Long depID) throws SQLException {
 
         Session session = sessionFactory.openSession();
-        session.beginTransaction();
         List<Employee> employees = (List<Employee>) session.createQuery(GET_EMP).setParameter("depID", depID).list();
-        session.getTransaction().commit();
         session.close();
         return employees;
     }
@@ -66,10 +57,10 @@ public class EmpHibernateDAOImpl implements EmployeeDAO {
     public Employee getEmpByID(Employee employee) throws SQLException {
         Long lEmpID = employee.getId();
         Session session = sessionFactory.openSession();
-        session.beginTransaction();
         employee = (Employee) session.get(Employee.class, lEmpID);
-        session.getTransaction().commit();
         session.close();
         return employee;
     }
 }
+
+

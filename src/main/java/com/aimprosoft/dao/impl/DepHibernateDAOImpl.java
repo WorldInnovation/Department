@@ -1,3 +1,4 @@
+
 package com.aimprosoft.dao.impl;
 
 import com.aimprosoft.dao.DepartmentDAO;
@@ -5,6 +6,8 @@ import com.aimprosoft.model.Department;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -22,14 +25,10 @@ public class DepHibernateDAOImpl implements DepartmentDAO {
     public void delete(Department department) throws SQLException {
 
         Session session = sessionFactory.openSession();
-        session.beginTransaction();
+
         try {
             session.delete(department);
-            session.getTransaction().commit();
-        } catch (Exception e) {
-            session.getTransaction().rollback();
-            e.printStackTrace();
-        } finally {
+        }  finally {
             session.close();
         }
     }
@@ -39,12 +38,9 @@ public class DepHibernateDAOImpl implements DepartmentDAO {
 
         Session session = sessionFactory.openSession();
         try {
-            session.beginTransaction();
             session.saveOrUpdate(department);
-            session.getTransaction().commit();
-        } catch (Exception e) {
-            session.getTransaction().rollback();
-        } finally {
+
+        }  finally {
             if (session != null) session.close();
         }
 
@@ -53,13 +49,10 @@ public class DepHibernateDAOImpl implements DepartmentDAO {
     @Override
     public List<Department> getAll() throws SQLException {
         Session session = sessionFactory.openSession();
-        session.beginTransaction();
         List<Department> departments = null;
         try {
             departments = (List<Department>) session.createQuery(GET_DEP).list();
-            session.getTransaction().commit();
-        } catch (Exception e) {
-            e.printStackTrace();
+
         } finally {
             session.close();
         }
@@ -70,9 +63,7 @@ public class DepHibernateDAOImpl implements DepartmentDAO {
     public Department getDepByID(Department department) throws SQLException {
         Long lDepID = department.getId();
         Session session = sessionFactory.openSession();
-        session.beginTransaction();
         department = (Department) session.get(Department.class, lDepID);
-        session.getTransaction().commit();
         session.close();
         return department;
     }
@@ -81,17 +72,13 @@ public class DepHibernateDAOImpl implements DepartmentDAO {
     public Department existNameInDB(Department department) throws SQLException {
         String depName = department.getName();
         Session session = sessionFactory.openSession();
-        session.beginTransaction();
         Department dep = department;
         try {
             Query query = session.
                     createQuery("from Department where name=:name");
             query.setParameter("name", depName);
             dep = (Department) query.uniqueResult();
-            session.getTransaction().commit();
 
-        } catch (Exception e) {
-            session.getTransaction().rollback();
         } finally {
             session.close();
         }
@@ -99,3 +86,4 @@ public class DepHibernateDAOImpl implements DepartmentDAO {
 
     }
 }
+

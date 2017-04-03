@@ -8,6 +8,8 @@ import com.aimprosoft.service.DepartmentService;
 import com.aimprosoft.util.CustomValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -20,25 +22,26 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Autowired
     private CustomValidator validator;
 
-
+    @Transactional(propagation=Propagation.REQUIRED, readOnly=false)
     @Override
     public void saveOrUpdateDepartment(Department department) throws ValidateExp, SQLException {
         validator.validate(department);
         departmentDAO.update(department);
     }
-
+    @Transactional(propagation=Propagation.SUPPORTS, readOnly=true)
     @Override
     public List<Department> showDepartments() throws SQLException {
 
         return (List<Department>) departmentDAO.getAll();
     }
 
+    @Transactional(propagation=Propagation.REQUIRED, readOnly=false)
     @Override
     public void deleteDepartment(Department department) throws SQLException {
 
         departmentDAO.delete(department);
     }
-
+    @Transactional(propagation=Propagation.SUPPORTS, readOnly=true)
     @Override
     public Department getDepartmentById(Department department) throws SQLException {
         return departmentDAO.getDepByID(department);

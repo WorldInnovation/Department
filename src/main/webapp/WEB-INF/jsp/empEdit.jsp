@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <script>
     $( function() {
         $('#datepicker').datepicker({dateFormat: "yy-mm-dd"});
@@ -21,14 +22,15 @@
 <div class="titleTable">
     Employee
 </div>
+
 <form action="EmpSave" method="post">
     <input type="hidden" name="EmpID" value="${empID}"/>
     <input type="hidden" name="DepID" value="${depID}"/>
-    <input type="hidden" name="employee" value="${employee}" />
+    <input type="hidden" name="employee"  value="${employee}" />
     <table >
         <caption>
         <span class="titleTable">
-            Employees
+            Employee
         </span>
         </caption>
         <tr>
@@ -55,7 +57,6 @@
             </td>
             <td>
                 <label>
-                    <%-- <input type="text" name="SecondName" value="<c:out value="${employee.secondName}" />" >--%>
                     <input type="text" name="SecondName" pattern="[A-Za-z]{3,}"value="<c:out value="${param['secondName'] eq null ? employee.secondName : param['secondName']}"/>"/>
                 </label>
             </td>
@@ -70,7 +71,6 @@
             </td>
             <td>
                 <label>
-                    <%-- <input type="text" name="Grade" pattern="[0-9]" value="<c:out value="${employee.grade}" />" >--%>
                     <input type="text" name="Grade" value="<c:out value="${param['grade'] eq null ? employee.grade : param['grade']}"/>"/>
                 </label>
             </td>

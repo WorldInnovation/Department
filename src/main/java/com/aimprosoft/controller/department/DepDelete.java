@@ -14,7 +14,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 @Controller("/DepDelete")
-
 public class DepDelete implements InternalController {
     @Autowired
     private DepartmentService departmentService;

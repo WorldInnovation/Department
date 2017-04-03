@@ -5,6 +5,7 @@ import com.aimprosoft.model.Department;
 import com.aimprosoft.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +14,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-@Component("/")
+@Controller("/")
 public class DepartmentsList implements InternalController {
     @Autowired
     private DepartmentService departmentService;

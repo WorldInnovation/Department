@@ -39,12 +39,7 @@ public class DepSave implements InternalController {
             req.setAttribute("depId", depId);
             req.setAttribute("errorMap", ex.getErrorMap());
             req.getRequestDispatcher("WEB-INF/jsp/editDep.jsp").forward(req, resp);
-        } catch (ConstraintViolationException errorMessage) {
-            req.setAttribute("department", department);
-            req.setAttribute("depId", depId);
-            req.setAttribute("errorMap.name", errorMessage.getMessage());
-            req.getRequestDispatcher("WEB-INF/jsp/editDep.jsp").forward(req, resp);
-        } catch (SQLException ex) {
+        }  catch (SQLException ex) {
             req.getRequestDispatcher("WEB-INF/jsp/sqlException.jsp").forward(req, resp);
         }
     }

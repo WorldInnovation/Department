@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@Component("controller")
+@org.springframework.stereotype.Controller("controller")
 public class Controller implements HttpRequestHandler {
 
     @Autowired
