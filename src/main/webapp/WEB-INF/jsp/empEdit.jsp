@@ -70,7 +70,7 @@
             </td>
             <td>
                 <label>
-                    <%-- <input type="text" name="Grade" value="<c:out value="${employee.grade}" />" >--%>
+                    <%-- <input type="text" name="Grade" pattern="[0-9]" value="<c:out value="${employee.grade}" />" >--%>
                     <input type="text" name="Grade" value="<c:out value="${param['grade'] eq null ? employee.grade : param['grade']}"/>"/>
                 </label>
             </td>
