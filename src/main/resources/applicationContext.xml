@@ -7,7 +7,7 @@
 
     <context:property-placeholder location="classpath:database.properties"/>
     <context:annotation-config/>
-
+    <!--<tx:annotation-driven transaction-manager="transactionManager" />-->
     <context:component-scan
             base-package="com.aimprosoft.controller,com.aimprosoft.service,com.aimprosoft.dao,com.aimprosoft.util"/>
 
@@ -35,13 +35,13 @@
             </props>
         </property>
     </bean>
-    <tx:annotation-driven transaction-manager="transactionManager" />
+
 
     <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-
         <property name="dataSource" ref="dataSource"/>
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+
     <bean id="myValidator" class="net.sf.oval.Validator"/>
 
 </beans>

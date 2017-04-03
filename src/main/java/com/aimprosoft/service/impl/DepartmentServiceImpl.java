@@ -22,7 +22,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Autowired
     private CustomValidator validator;
 
-    @Transactional(propagation=Propagation.REQUIRED, readOnly=false)
+    @Transactional//(propagation=Propagation.REQUIRES_NEW)
     @Override
     public void saveOrUpdateDepartment(Department department) throws ValidateExp, SQLException {
         validator.validate(department);
@@ -35,7 +35,7 @@ public class DepartmentServiceImpl implements DepartmentService {
         return (List<Department>) departmentDAO.getAll();
     }
 
-    @Transactional(propagation=Propagation.REQUIRED, readOnly=false)
+    @Transactional//(propagation=Propagation.REQUIRES_NEW)
     @Override
     public void deleteDepartment(Department department) throws SQLException {
 
