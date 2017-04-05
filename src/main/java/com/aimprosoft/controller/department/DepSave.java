@@ -35,7 +35,7 @@ public class DepSave implements InternalController {
             departmentService.saveOrUpdateDepartment(department);
             resp.sendRedirect("/");
         } catch (ValidateExp ex) {
-            req.setAttribute("department", department);
+           // req.setAttribute("department", department);
             req.setAttribute("depId", depId);
             req.setAttribute("errorMap", ex.getErrorMap());
             req.getRequestDispatcher("WEB-INF/jsp/editDep.jsp").forward(req, resp);
