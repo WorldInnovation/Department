@@ -25,40 +25,29 @@ public class EmpHibernateDAOImpl implements EmployeeDAO {
 
     @Override
     public void delete(Employee employee) throws SQLException {
-        Session session = sessionFactory.openSession();
-        try {
+        Session session = sessionFactory.getCurrentSession();
             session.delete(employee);
-        } finally {
-            session.close();
-        }
-
     }
 
     @Override
     public void update(Employee employee) throws SQLException {
-        Session session = sessionFactory.openSession();
-        try {
+        Session session = sessionFactory.getCurrentSession();
             session.saveOrUpdate(employee);
-        } finally {
-            session.close();
-        }
     }
 
     @Override
     public List<Employee> getAll(Long depID) throws SQLException {
 
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
         List<Employee> employees = (List<Employee>) session.createQuery(GET_EMP).setParameter("depID", depID).list();
-        session.close();
         return employees;
     }
 
     @Override
     public Employee getEmpByID(Employee employee) throws SQLException {
         Long lEmpID = employee.getId();
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
         employee = (Employee) session.get(Employee.class, lEmpID);
-        session.close();
         return employee;
     }
 }
