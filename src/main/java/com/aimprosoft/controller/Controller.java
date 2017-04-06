@@ -25,7 +25,6 @@ public class Controller implements HttpRequestHandler {
         try {
             mainController.execute(req, resp);
         } catch (SQLException e) {
-            e.printStackTrace();
             req.setAttribute("sqlError", e.getMessage());
             resp.sendRedirect("WEB-INF/jsp/sqlException.jsp");
         }

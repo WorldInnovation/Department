@@ -27,7 +27,7 @@ public class EditDepartment implements InternalController {
             department.setId(depId);
             department = departmentService.getDepartmentById(department);
             req.setAttribute("depId", depId);
-        }//edit
+        }
         req.setAttribute("department", department);
         req.getRequestDispatcher("WEB-INF/jsp/editDep.jsp").forward(req, resp);
     }

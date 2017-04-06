@@ -24,11 +24,10 @@
     Employee
 </div>
 
-<%--<c:if test="${employee.birthday eq null || ''}">
-
-    <c:set target="employee" property="birthday" value="${param['Birthday']}"/>
-</c:if>--%>
-
+<c:set var="birthdayEmp" value="${employee.birthday}"/>
+<c:if test="${employee.birthday eq null }">
+    <c:set var="birthdayEmp" value="${param['Birthday']}"/>
+</c:if>
 
 <form action="EmpSave" method="post">
     <input type="hidden" name="EmpID" value="${empID}"/>
@@ -94,11 +93,9 @@
             </td>
             <td>
                 <label>
-                    <p><input type="text" id="datepicker" name="Birthday" placeholder="<fmt:formatDate pattern='yyyy-MM-dd' value='${employee.birthday}' />"
-                              value="<fmt:formatDate pattern='yyyy-MM-dd' value='${employee.birthday}' />">
-                    </p><%--<p><input type="text" id="datepicker" name="Birthday" placeholder="<fmt:formatDate pattern='yyyy-MM-dd' value='${employee.birthday eq null ? param["Birthday"] : employee.birthday}' />"
-                              value="<fmt:formatDate pattern='yyyy-MM-dd' value='${employee.birthday eq null ? param["Birthday"] : employee.birthday}' />">
-                    </p>--%>
+                    <p><input type="text" id="datepicker" name="Birthday" placeholder="${birthdayEmp}"
+                              value="${birthdayEmp}">
+                    </p>
                 </label>
 
             </td>
