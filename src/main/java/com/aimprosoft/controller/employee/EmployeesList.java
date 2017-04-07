@@ -25,7 +25,7 @@ public class EmployeesList implements InternalController {
         req.setAttribute("depID", depID);
         Long lDepID = FormatUtils.getLongFromStr(depID);
         if (lDepID != null) {
-            List<Employee> employees = employeeService.listEmployee(lDepID);
+            List<Employee> employees = employeeService.listEmployee(depID);
             req.setAttribute("employees", employees);
         }
         req.getRequestDispatcher("WEB-INF/jsp/empList.jsp").forward(req, resp);

@@ -2,9 +2,7 @@ package com.aimprosoft.controller.employee;
 
 import com.aimprosoft.controller.InternalController;
 import com.aimprosoft.exeption.ValidateExp;
-import com.aimprosoft.model.Department;
 import com.aimprosoft.model.Employee;
-import com.aimprosoft.service.DepartmentService;
 import com.aimprosoft.service.EmployeeService;
 import com.aimprosoft.util.FormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,12 +36,12 @@ public class EmpSave implements InternalController {
         Long lEmpID = FormatUtils.getLongFromStr(empID);
         if (lEmpID != null) {
             employee.setId(lEmpID);
-        }//edit
+        }
         employee.setFirstName(firstName);
         employee.setSecondName(secondName);
         Integer iGrade = FormatUtils.getIntFromStr(grade);
         if (iGrade != null) employee.setGrade(iGrade);
-        Date dBirthday = FormatUtils.getDateFromString(birthday);//stringToValue(birthday)
+        Date dBirthday = FormatUtils.getDateFromString(birthday);
 
         if (dBirthday != null) employee.setBirthday(dBirthday);
         Long lDepID = FormatUtils.getLongFromStr(depID);
@@ -56,7 +54,6 @@ public class EmpSave implements InternalController {
             req.setAttribute("depID", depID);
             req.setAttribute("empID", empID);
             req.setAttribute("errorMap", exp.getErrorMap());
-            //req.setAttribute("employee", employee);
             req.getRequestDispatcher("WEB-INF/jsp/empEdit.jsp").forward(req, resp);
         }
         String sendParam = "?DepID=".concat(depID);

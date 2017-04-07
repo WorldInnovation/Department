@@ -40,14 +40,14 @@ public class EmployServiceImpl implements EmployeeService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<Employee> listEmployee(Long lDepID) throws SQLException {
+    public List<Employee> listEmployee(String strId) throws SQLException {
 
-        return employeeDAO.getAll(lDepID);
+        return employeeDAO.getAll(strId);
     }
 
     @Transactional(readOnly = true)
     @Override
-    public Employee getEmpByID(Employee employee) throws SQLException {
-        return employeeDAO.getEmpByID(employee);
+    public Employee getEmpByID(String strId) throws SQLException {
+        return employeeDAO.getEmpByID(strId);
     }
 }

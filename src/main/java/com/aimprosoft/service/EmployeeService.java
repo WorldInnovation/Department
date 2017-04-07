@@ -12,7 +12,7 @@ public interface EmployeeService {
 
     void updateEmployee (Employee employee) throws ValidateExp, SQLException;
     void deleteEmployee (Employee employee) throws  SQLException;
-    List<Employee> listEmployee (Long lDepID) throws SQLException;
-    Employee getEmpByID (Employee employee)   throws SQLException;
+    List<Employee> listEmployee (String empId) throws SQLException;
+    Employee getEmpByID (String empId)   throws SQLException;
 
 }

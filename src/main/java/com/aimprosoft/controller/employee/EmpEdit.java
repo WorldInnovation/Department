@@ -24,10 +24,8 @@ public class EmpEdit implements InternalController {
         String depID = req.getParameter("DepID");
         Long lEmpID = FormatUtils.getLongFromStr(empID);
         req.setAttribute("depID", depID);
-        Employee employee = new Employee();
         if (lEmpID != null) {
-            employee.setId(lEmpID);
-            employee = employeeService.getEmpByID(employee);
+            Employee employee = employeeService.getEmpByID(empID);
             req.setAttribute("empID", empID);
             req.setAttribute("employee", employee);
         }

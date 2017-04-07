@@ -23,10 +23,8 @@ public class EmpDelete implements InternalController {
         String depID = req.getParameter("DepID");
         String empID = req.getParameter("EmpID");
         Long lEmpID = FormatUtils.getLongFromStr(empID);
-        Employee employee = new Employee();
         if (lEmpID != null) {
-            employee.setId(lEmpID);
-            employee = employeeService.getEmpByID(employee);
+            Employee  employee = employeeService.getEmpByID(empID);
             employeeService.deleteEmployee(employee);
         }
         String sendParam = "?DepID=".concat(depID);

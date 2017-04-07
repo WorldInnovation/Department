@@ -5,10 +5,10 @@ import com.aimprosoft.model.Employee;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface EmployeeDAO {
+public interface EmployeeDAO<T> {
 
-    void delete (Employee employee) throws  SQLException;
-    void update ( Employee employee) throws SQLException;
-    List<Employee> getAll(Long depID) throws SQLException;
-    Employee getEmpByID (Employee employee) throws SQLException;
+    void delete (T entity) throws  SQLException;
+    void update ( T entity) throws SQLException;
+    List<Employee> getAll(String depID) throws SQLException;
+    Employee getEmpByID (String id) throws SQLException;
 }

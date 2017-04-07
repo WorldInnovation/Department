@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Repository("employeeDAO")
-public class EmpHibernateDAOImpl implements EmployeeDAO {
+public class EmpHibernateDAOImpl implements EmployeeDAO<Employee> {
 
     private static  final String GET_EMP = "from Employee e where e.depId=:depID";
 
@@ -36,19 +36,19 @@ public class EmpHibernateDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    public List<Employee> getAll(Long depID) throws SQLException {
-
+    public List<Employee> getAll(String strId) throws SQLException {
+       Long depID = Long.valueOf(strId);
         Session session = sessionFactory.getCurrentSession();
         List<Employee> employees = (List<Employee>) session.createQuery(GET_EMP).setParameter("depID", depID).list();
         return employees;
     }
 
     @Override
-    public Employee getEmpByID(Employee employee) throws SQLException {
-        Long lEmpID = employee.getId();
+    public Employee getEmpByID(String strID) throws SQLException {
+        Long lEmpID = Long.valueOf(strID);
         Session session = sessionFactory.getCurrentSession();
-        employee =  session.get(Employee.class, lEmpID);
-        return employee;
+        return session.get(Employee.class, lEmpID);
+
     }
 }
 
