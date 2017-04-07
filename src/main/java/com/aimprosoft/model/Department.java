@@ -25,15 +25,11 @@ public class Department implements Serializable {
     @CheckWith(value = OvalValidDepName.class, message = " name exist")
     private String name;
 
-    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)//
+    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, orphanRemoval = true)//, fetch = FetchType.LAZY
     private List<Employee> employees;
 
     public List<Employee> getEmployees() {
         return employees;
-    }
-
-    public void setEmployees(List<Employee> employees) {
-        this.employees = employees;
     }
 
     public Long getId() {

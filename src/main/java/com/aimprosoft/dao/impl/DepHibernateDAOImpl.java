@@ -2,9 +2,9 @@ package com.aimprosoft.dao.impl;
 
 import com.aimprosoft.dao.DepartmentDAO;
 import com.aimprosoft.model.Department;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -12,55 +12,48 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Repository("departmentDAO")
-public class DepHibernateDAOImpl implements DepartmentDAO {
+public class DepHibernateDAOImpl implements DepartmentDAO<Department> {
 
-    private static final String GET_DEP = "from Department";
+    private static final String GET_ALL_DEP = "from Department";
+    private static final String GET_DEP_BY_NAME = "from Department where name=:name";
+
     @Autowired
     private SessionFactory sessionFactory;
 
     @Override
-    public void delete(Department department) throws SQLException {
-
+    public void delete(Department entity) throws SQLException {
         Session session = sessionFactory.getCurrentSession();
-        session.delete(department);
-
+        session.delete(entity);
     }
 
     @Override
-    public void update(Department department) throws SQLException {
-
+    public void update(Department entity) throws SQLException {
         Session session = sessionFactory.getCurrentSession();
-        session.saveOrUpdate(department);
-
+        session.saveOrUpdate(entity);
     }
 
     @Override
     public List<Department> getAll() throws SQLException {
         Session session = sessionFactory.getCurrentSession();
-        List<Department> departments = null;
-        departments = (List<Department>) session.createQuery(GET_DEP).list();
-        return departments;
+        return (List<Department>) session.createQuery(GET_ALL_DEP).list();
     }
 
     @Override
-    public Department getDepByID(Department department) throws SQLException {
-        Long lDepID = department.getId();
+    public Department getDepByID(String s) throws SQLException {
+        Long depId = Long.valueOf(s);
         Session session = sessionFactory.getCurrentSession();
-        department = (Department) session.get(Department.class, lDepID);
-        return department;
+        return session.get(Department.class, depId);
+
     }
 
     @Override
-    public Department existNameInDB(Department department) throws SQLException {
-        String depName = department.getName();
+    public Department existNameInDB(String depName) throws SQLException {
         Session session = sessionFactory.getCurrentSession();
-        Department dep = department;
         Query query = session.
-                createQuery("from Department where name=:name");
+                createQuery(GET_DEP_BY_NAME);
         query.setParameter("name", depName);
-        dep = (Department) query.uniqueResult();
-        return dep;
-
+        return (Department) query.uniqueResult();
     }
+
 }
 

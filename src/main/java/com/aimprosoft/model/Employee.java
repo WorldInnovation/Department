@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-@Entity()
+@Entity
 @Table(name = "Employee")
 public class Employee implements Serializable {
 
@@ -16,15 +16,11 @@ public class Employee implements Serializable {
     private Long id;
 
     @Column(name = "firstName")
-    @NotNull
-    @NotEmpty
     @MinLength(value = 3, message = " is shorter 3")
     @MaxLength(value = 21, message = " is bigger 21")
     private String firstName;
 
     @Column(name = "secondName")
-    @NotNull
-    @NotEmpty
     @MinLength(value = 3, message = " is shorter 3")
     @MaxLength(value = 21, message = " is bigger 21")
     private String secondName;
@@ -43,20 +39,16 @@ public class Employee implements Serializable {
     private Date birthday;
 
     @Column(name = "eMail")
-    @NotNull
-    @NotEmpty
     @MinLength(value = 7, message = "set@rightMail.format")
     @MaxLength(value = 21, message = "mail is to long")
     @Email(message = "set@rightMail.format")
     private String eMail;
 
-
-    @NotNull
     @Column(name = "depID")
     private Long depId;
 
     @ManyToOne
-    @JoinColumn(name = "depID", insertable = false, updatable = false, nullable=false)
+    @JoinColumn(name = "depID", insertable = false, updatable = false, nullable = false)
     private Department department;
 
 
@@ -84,17 +76,7 @@ public class Employee implements Serializable {
         return eMail;
     }
 
-    public void seteMail(String eMail) {
-        this.eMail = eMail;
-    }
-
-    public Long getDepId() {
-        return depId;
-    }
-
-    public void setDepId(Long depId) {
-        this.depId = depId;
-    }
+    public Long getDepId() {return depId;}
 
     public void setDepartment(Department department) {
         this.department = department;
@@ -104,9 +86,7 @@ public class Employee implements Serializable {
         this.id = id;
     }
 
-    public void setDepID(Long depId) {
-        this.depId = depId;
-    }
+    public void setDepID(Long depId) {this.depId = depId;}
 
     public long getId() {
         return id;

@@ -11,5 +11,5 @@ public interface DepartmentService {
     List <Department> showDepartments () throws  SQLException;
     void saveOrUpdateDepartment(Department department) throws ValidateExp, SQLException;
     void deleteDepartment (Department department) throws  SQLException;
-    Department getDepartmentById(Department department) throws SQLException;
+    Department getDepartmentById(String depId) throws SQLException;
 }

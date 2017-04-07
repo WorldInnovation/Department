@@ -38,13 +38,14 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<Department> showDepartments() throws SQLException {
-        return (List<Department>) departmentDAO.getAll();
+    public Department getDepartmentById(String depId) throws SQLException {
+        return departmentDAO.getDepByID(depId);
     }
 
     @Transactional(readOnly = true)
     @Override
-    public Department getDepartmentById(Department department) throws SQLException {
-        return departmentDAO.getDepByID(department);
+    public List<Department> showDepartments() throws SQLException {
+        return  departmentDAO.getAll();
     }
+
 }

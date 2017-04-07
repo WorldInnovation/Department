@@ -47,7 +47,7 @@ public class EmpHibernateDAOImpl implements EmployeeDAO {
     public Employee getEmpByID(Employee employee) throws SQLException {
         Long lEmpID = employee.getId();
         Session session = sessionFactory.getCurrentSession();
-        employee = (Employee) session.get(Employee.class, lEmpID);
+        employee =  session.get(Employee.class, lEmpID);
         return employee;
     }
 }

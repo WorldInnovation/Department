@@ -25,7 +25,7 @@ public class EditDepartment implements InternalController {
         Department department = new Department();
         if (depId != null) {
             department.setId(depId);
-            department = departmentService.getDepartmentById(department);
+                department = departmentService.getDepartmentById(strDepId);
             req.setAttribute("depId", depId);
         }
         req.setAttribute("department", department);

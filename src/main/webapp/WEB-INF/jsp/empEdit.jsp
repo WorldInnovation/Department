@@ -24,11 +24,6 @@
     Employee
 </div>
 
-<c:set var="birthdayEmp" value="${employee.birthday}"/>
-<c:if test="${employee.birthday eq null }">
-    <c:set var="birthdayEmp" value="${param['Birthday']}"/>
-</c:if>
-
 <form action="EmpSave" method="post">
     <input type="hidden" name="EmpID" value="${empID}"/>
     <input type="hidden" name="DepID" value="${depID}"/>
@@ -93,8 +88,8 @@
             </td>
             <td>
                 <label>
-                    <p><input type="text" id="datepicker" name="Birthday" placeholder="${birthdayEmp}"
-                              value="${birthdayEmp}">
+                    <p><input type="text" id="datepicker" name="Birthday" placeholder="${param['Birthday'] eq null ? employee.birthday : param['Birthday']}"
+                              value="${param['Birthday'] eq null ? employee.birthday : param['Birthday']}">
                     </p>
                 </label>
 

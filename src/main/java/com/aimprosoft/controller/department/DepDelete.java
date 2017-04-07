@@ -23,9 +23,7 @@ public class DepDelete implements InternalController {
         String strDepID = req.getParameter("DepID");
         Long depId = FormatUtils.getLongFromStr(strDepID);
         if (depId != null) {
-            Department department = new Department();
-            department.setId(depId);
-            department = departmentService.getDepartmentById(department);
+            Department department = departmentService.getDepartmentById(strDepID);
             departmentService.deleteDepartment(department);
         }
         resp.sendRedirect("/");

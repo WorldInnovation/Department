@@ -34,7 +34,6 @@
         <td>${dep.name}</td>
         <td> <form action="EmployeesList" method="get">
             <input type="hidden" name="DepID" value="${dep.id}" >
-       <%--     <button type="button" class="btn" value="Select"></button>--%>
             <input type="submit" value="Select">
         </form>
         </td>
