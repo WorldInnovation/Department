@@ -9,6 +9,6 @@ public interface EmployeeDAO<T> {
 
     void delete (T entity) throws  SQLException;
     void update ( T entity) throws SQLException;
-    List<Employee> getAll(String depID) throws SQLException;
+    List<T> getAll(String depID) throws SQLException;
     Employee getEmpByID (String id) throws SQLException;
 }
